@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>LoL Arena Champion Tracker</title>
+</head>
+<body>
+    <div class="navbar">
+        <span class="welcome">👋 Welcome, {{ username }}</span>
+
+        <div class="nav-search">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search champions..."
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="nav-actions">
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
+    <div class="background-overlay"></div>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Arena Champion Progress</h1>
+            <p class="subtitle">Track your Arena progress with League champions</p>
+        </div>
+
+        <div class="controls-panel">
+            <div class="controls-row">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        class="search-input"
+                        placeholder="Search champions..."
+                        id="searchInput"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All</button>
+                    <button class="filter-tab" data-filter="won">Won</button>
+                    <button class="filter-tab" data-filter="notyet">Not Won Yet</button>
+                </div>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat">
+                    ✅ Won: <strong id="ownedCount">0</strong> / <strong id="totalCount">0</strong>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-text" id="progressText">0% Complete</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    ⏳ Not Won Yet: <strong id="missingCount">0</strong>
+                </div>
+            </div>
+            <div class="reset-container" style="text-align:center; margin-top: 15px;">
+                <button id="resetProgress">Reset Progress</button>
+            </div>
+        </div>
+
+        <div class="champions-grid" id="championsGrid">
+            <!-- Champions will be populated by JavaScript -->
+        </div>
+
+        <div class="no-results" id="noResults">
+            No champions found matching your criteria.
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
